@@ -15,8 +15,17 @@
     min-height: 150px;
     height: auto;
     outline: dashed 1px black;
+    background-color: #f0f8ff;
 }
 
-.textDecoration {
+.doneTaskDecoration {
     text-decoration: line-through;
+}
+
+.listRedBackground {
+    background-color: #ffe4c4 !important;
+}
+
+.listGreenBackground {
+    background-color: #c7ffb6 !important;
 }

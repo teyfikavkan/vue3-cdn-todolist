@@ -1,0 +1,29 @@
+{
+    "userList": [
+        {
+            "name": "Name 1",
+            "surname": "Surname 1",
+            "userName": "username1"
+        },
+        {
+            "name": "Name 2",
+            "surname": "Surname 2",
+            "userName": "username2"
+        },
+        {
+            "name": "Name 3",
+            "surname": "Surname 3",
+            "userName": "username3"
+        },
+        {
+            "name": "Name 4",
+            "surname": "Surname 4",
+            "userName": "username4"
+        },
+        {
+            "name": "Name 5",
+            "surname": "Surname 5",
+            "userName": "username5"
+        }
+    ]
+}

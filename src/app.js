@@ -31,7 +31,11 @@ const app = Vue.createApp({
             }
         },
         onDeleteTaskEvent(index) {
-            this.task.taskList.splice(index, 1);
+            if (this.task.taskList[index].isDone) {
+                alert("You can not delete task has alredy completed.");
+            } else {
+                this.task.taskList.splice(index, 1);
+            }
         },
         onChangeTaskCompleteSituation: function (index, isDone) {
             this.task.taskList[index].isDone = isDone;

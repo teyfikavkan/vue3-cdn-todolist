@@ -20,11 +20,11 @@
     </div>
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-center border-1 mb-2"
-        v-for="(taskElement, index) in task.taskList">
+      :class="{ 'listRedBackground' : !taskElement.isDone, 'listGreenBackground' : taskElement.isDone }" v-for="(taskElement, index) in task.taskList">
         <div>
           <input class="form-check-input" type="checkbox" value="taskElement.isDone" v-bind:id="`checkbox-${index}`"
             v-on:change="onChangeTaskCompleteSituation(index, $event.target.checked)"></input>
-          <label class="form-check-label ms-2" :class="{ 'textDecoration' : taskElement.isDone }">
+          <label class="form-check-label ms-2" :class="{ 'doneTaskDecoration' : taskElement.isDone }">
             {{ taskElement.taskDescription }}
           </label>
         </div>
