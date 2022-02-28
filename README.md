@@ -1,5 +1,12 @@
 # vue3-cdn-todolist
 
+## Used Libraries/Technologies
+* [@Vue3](https://vuejs.org/)
+* [@Boostrap5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+* [@Axios](https://axios-http.com/docs/intro)
+* [@jQuery](https://jquery.com/)
+* [@Popper.js](https://popper.js.org/)
+
 ## Main Page Of To-Do-List Project
 * Project contains user selection dropdown menu to be assigned, input area to enter task description, 
 * adding button and task completed/uncompleted count indicator.
