@@ -3,6 +3,10 @@ const app = Vue.createApp({
         return {
             common: {
                 mainTitle: "To Do List App",
+                userSelectionTitle: "User List",
+            },
+            user: {
+                userList: []
             },
             task: {
                 addTask: "Add Task",
@@ -19,6 +23,9 @@ const app = Vue.createApp({
         }
     },
     methods: {
+        isThereAnyUser() {
+            return this.user.userList.length !== 0;
+        },
         onChangeTaskEvent: function (event) {
             this.task.taskDescription = event.target.value;
         },
@@ -40,6 +47,19 @@ const app = Vue.createApp({
         onChangeTaskCompleteSituation: function (index, isDone) {
             this.task.taskList[index].isDone = isDone;
         }
+    },
+    created() {
+        axios
+            .get("https://raw.githubusercontent.com/teyfikavkan/vue3-cdn-todolist/main/mock/userList.json")
+            .then(result => {
+                const user = {
+                    "userList": result.data.userList,
+                };
+                this.user = user;
+            })
+            .catch(error => {
+                console.error(error)
+            });
     }
 });
 
