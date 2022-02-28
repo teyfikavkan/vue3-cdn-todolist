@@ -32,10 +32,18 @@
       <div class="input-group-prepend" style="margin-right: 5px;">
         <div v-if="isThereAnyUser()" style="background-color: white;">
           <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">{{ common.userSelectionTitle }}</button>
+            aria-haspopup="true" aria-expanded="false" data-allow-clear="true">
+            {{getSelectedUserName}}
+            <span class="close bs-select-clear-selected"
+              :class="{ 'deselectUser': user.selectedUserId && user.selectedUserId !== '' }"
+              :title="user.deselectSelectedUserText" v-show="user.selectedUserId && user.selectedUserId !== ''"
+              @click="onDeselectSelectedUser($event)">
+              <span style="font-size: small;">X</span>
+            </span>
+          </button>
           <div class="dropdown-menu">
             <div v-for="subUser in user.userList">
-              <a class="dropdown-item" href="#">{{ subUser.userName }}</a>
+              <button class="dropdown-item" @click="onClickUserListDropdown(subUser)">{{ subUser.userName }}</button>
             </div>
           </div>
         </div>
@@ -43,8 +51,16 @@
       <input type="text" class="form-control" style="margin-right: 5px;" :placeholder="task.taskDescriptionPlaceHolder"
         @input="onChangeTaskEvent" v-bind:value="task.taskDescription">
       <button type="button" class="btn btn-primary" v-on:click="onAddTaskEvent">
-        {{task.addTask}}
+        {{task.addTaskText}}
       </button>
+    </div>
+    <div style="display: flex; flex-direction: row; border: dashed 1px; margin-bottom: 15px;">
+      <div class="listGreenBackground" style="display: flex; justify-content: center; width: 50%;">
+        {{task.completedTaskCountText}} {{countCompletedTask}}
+      </div>
+      <div class="listRedBackground" style="display: flex; justify-content: center; width: 50%;">
+        {{task.uncompletedTaskCountText}} {{countUncompletedTask}}
+      </div>
     </div>
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-center border-1 mb-2"
@@ -54,11 +70,11 @@
           <input class="form-check-input" type="checkbox" value="taskElement.isDone" v-bind:id="`checkbox-${index}`"
             v-on:change="onChangeTaskCompleteSituation(index, $event.target.checked)"></input>
           <label class="form-check-label ms-2" :class="{ 'doneTaskDecoration' : taskElement.isDone }">
-            {{ taskElement.taskDescription }}
+            {{ user.userList.find(u => u.id === taskElement.userId).userName + ' / ' + taskElement.taskDescription }}
           </label>
         </div>
         <button type="button" class="btn btn-danger btn-sm" @click="onDeleteTaskEvent(index)">
-          {{task.deleteTask}}
+          {{task.deleteTaskText}}
         </button>
       </li>
     </ul>
