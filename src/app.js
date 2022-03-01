@@ -42,7 +42,6 @@ const app = Vue.createApp({
             return 0;
         },
         getSelectedUserName() {
-            console.log("asd");
             if (this.user.selectedUserId && this.user.selectedUserId !== "") {
                 return this.user.userList.find(u => u.id === this.user.selectedUserId).userName;
             }
@@ -89,19 +88,45 @@ const app = Vue.createApp({
             this.task.taskList[index].isDone = isDone;
         }
     },
+    beforeCreate() {
+        console.log("beforeCreate Çalıştı..");
+    },
     created() {
+        console.log("created Çalıştı..");
         axios
             .get("https://raw.githubusercontent.com/teyfikavkan/vue3-cdn-todolist/main/mock/userList.json")
             .then(result => {
                 const user = {
                     "userList": result.data.userList,
                 };
-                this.user = {...this.user, ...user};
+                this.user = { ...this.user, ...user };
             })
             .catch(error => {
                 console.error(error)
             });
-    }
+    },
+    beforeMount() {
+        console.log("beforeMount Çalıştı..");
+    },
+    mounted() {
+        console.log("mounted Çalıştı..");
+    },
+    beforeUpdate() {
+        console.log("beforeUpdate Çalıştı..");
+    },
+    updated() {
+        console.log("updated Çalıştı..");
+    },
+    beforeUnmount() {
+        console.log("beforeUnmount Çalıştı..");
+    },
+    unmounted() {
+        console.log("unmounted Çalıştı..");
+    },
 });
 
 app.mount("#app");
+
+/* setTimeout(() => {
+    app.unmount();
+}, 5000); */
